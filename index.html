@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+
+</head>
+<style>
+    body {
+
+        background-color: rgb(235, 234, 234);
+        color: rgb(0, 0, 0);
+        font-family: Arial, sans-serif;
+
+    }
+
+    .form {
+        width: 35%;
+        height: 100%;
+        background-color: rgb(183, 114, 248);
+        padding: 30px;
+        margin: 20px;
+        border-radius: 10px;
+        margin-left: 30%;
+
+    }
+
+    h1 {
+        font-size: 45px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+
+        width: 90%;
+
+        border-radius: 5px;
+
+        padding: 10px;
+
+    }
+
+    label {
+        font-size: 25px;
+
+        text-align: left;
+
+    }
+
+    input[type="button"] {
+        background-color: rgb(52, 55, 238);
+        color: rgb(255, 255, 255);
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 25px;
+        border-radius: 5px;
+        margin-top: 40px;
+
+
+    }
+
+    #button:hover {
+        background-color: rgb(174, 0, 255);
+
+    }
+
+    @media (max-width:700px) {
+
+        h1 {
+            font-size: 20px;
+        }
+
+        label {
+            font-size: 15px;
+        }
+
+        input[type="button"] {
+            font-size: 15px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 5px;
+
+        }
+
+    }
+</style>
+
+<body>
+    <!-- <center> -->
+    <div class="form" id="form">
+        <center>
+            <h1>Student Registration</h1>
+        </center>
+
+        <form class="registration">
+            <div>
+                <label for="name">Student Name:</label><br>
+                <input type="text" id="name" required> <br><br>
+            </div>
+
+            <div>
+                <label for="rollNo">Roll No:</label><br>
+                <input type="text" id="rollNo" required><br><br>
+            </div>
+            <div>
+                <label for="matricMarks">Matric Marks:</label><br>
+                <input type="number" id="matricMarks" required><br><br>
+            </div>
+            <div>
+                <label for="totalMatricMarks">Total Matric Marks:</label><br>
+                <input type="number" id="totalMatricMarks" required><br><br>
+            </div>
+            <div>
+                <label for="fscMarks">FSc Marks:</label><br>
+                <input type="number" id="fscMarks" required><br><br>
+            </div>
+            <div>
+                <label for="totalFscMarks">Total FSc Marks:</label><br>
+                <input type="number" id="totalFscMarks" required><br><br>
+            </div>
+            <div>
+                <label for="entryTestMarks">Entry Test Marks:</label><br>
+                <input type="number" id="entryTestMarks" required><br><br>
+            </div>
+            <div>
+                <label for="totalEntryTestMarks">Total Entry Test Marks:</label><br>
+                <input type="number" id="totalEntryTestMarks" required><br><br>
+            </div>
+            <center> <input type="button" value="Submit" id="button" onclick="calculateAggregate()"></center>
+            <br><br><br>
+        </form>
+
+
+        <div id="result"></div>
+        <!-- </center> -->
+    </div>
+
+    <script>
+        function calculateAggregate(result) {
+            // Get input values
+            var name = document.getElementById("name").value;
+            var rollNo = document.getElementById("rollNo").value;
+            var matricMarks = parseInt(document.getElementById("matricMarks").value);
+            var totalMatricMarks = parseInt(document.getElementById("totalMatricMarks").value);
+            var fscMarks = parseInt(document.getElementById("fscMarks").value);
+            var totalFscMarks = parseInt(document.getElementById("totalFscMarks").value);
+            var entryTestMarks = parseInt(document.getElementById("entryTestMarks").value);
+            var totalEntryTestMarks = parseInt(document.getElementById("totalEntryTestMarks").value);
+
+            // Calculate percentages
+            var matricPercentage = (matricMarks / totalMatricMarks) * 100;
+            var fscPercentage = (fscMarks / totalFscMarks) * 100;
+            var entryTestPercentage = (entryTestMarks / totalEntryTestMarks) * 100;
+
+            // Calculate aggregate
+            var aggregate = (0.2 * matricPercentage) + (0.3 * fscPercentage) + (0.5 * entryTestPercentage);
+
+            // Show student name, aggregate, and eligibility
+            document.getElementById("result").innerHTML = "Student Name: " + name + "<br>" +
+                "Aggregate: " + aggregate.toFixed(2) + "%";
+
+            // Check eligibility
+            if (aggregate >= 60) {
+                alert("You are eligible for admission.");
+            } else {
+                alert("You are not eligible for admission.");
+            }
+        }
+    </script>
+</body>
+
+</html>
