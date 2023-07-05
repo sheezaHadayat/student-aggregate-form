@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <a href="detail.html"></a>
+ 
     <title>Student Registration</title>
-
+    <a href="detail.html"></a>
 </head>
 <style>
     body {
@@ -54,11 +55,12 @@
         background-color: rgb(52, 55, 238);
         color: rgb(255, 255, 255);
         border: none;
-        padding: 10px 20px;
+        padding:10px 15px;
         cursor: pointer;
         font-size: 25px;
         border-radius: 5px;
         margin-top: 40px;
+        /* margin-left: 100px; */
 
 
     }
@@ -67,7 +69,7 @@
         background-color: rgb(174, 0, 255);
 
     }
-
+  
     @media (max-width:700px) {
 
         h1 {
@@ -132,16 +134,21 @@
                 <label for="totalEntryTestMarks">Total Entry Test Marks:</label><br>
                 <input type="number" id="totalEntryTestMarks" required><br><br>
             </div>
-            <center> <input type="button" value="Submit" id="button" onclick="calculateAggregate()"></center>
-            <br><br><br>
+            <center><input type="button" value="Submit" id="button" onclick="calculateAggregate()"></center>
+            <br><br>
+
         </form>
 
 
-        <div id="result"></div>
+        <div id="result" class="result"></div>
         <!-- </center> -->
+    
     </div>
+   
 
-    <script src="index.js">  </script>
+    <script src="index.js">
+    </script>
+   
 </body>
 
 </html>

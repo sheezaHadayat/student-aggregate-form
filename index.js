@@ -16,33 +16,38 @@ function calculateAggregate(result) {
 
     // Calculate aggregate
     var aggregate = (0.2 * matricPercentage) + (0.3 * fscPercentage) + (0.5 * entryTestPercentage);
-
-     // Store student data in localStorage
-     var studentData = {
-        name: name,
-        rollNo: rollNo,
-       aggregate: aggregate.toFixed(2)
-     };
-      localStorage.setItem(rollNo, JSON.stringify(studentData));
-
-        //   Retrieve student data from localStorage and display it
-          for (var i = 0; i < localStorage.length; i++) {
-            var key = localStorage.key(i);
-          var studentData = JSON.parse(localStorage.getItem(rollNo));
-          document.write("<tr>");
-          document.write("<td>" + studentData.name + "</td>");
-          document.write("<td>" + studentData.aggregate + "%</td>");
-          document.write("</tr>");
-        
-          }
+    
     // Show student name, aggregate, and eligibility
     document.getElementById("result").innerHTML = "Student Name: " + name + "<br>" +
         "Aggregate: " + aggregate.toFixed(2) + "%";
 
-    // Check eligibility
-    if (aggregate >= 60) {
+  
+      // Store student data in localStorage
+      var studentData = {
+        name: name,
+        aggregate: aggregate.toFixed(2)
+      };
+      
+      // Retrieve existing student data from localStorage
+      var existingData = JSON.parse(localStorage.getItem("studentData"));
+
+      if (existingData) {
+        // Append new student data to existing data
+        existingData.push(studentData);
+        localStorage.setItem("studentData", JSON.stringify(existingData));
+      } else {
+        // Create new array for student data in localStorage
+        localStorage.setItem("studentData", JSON.stringify([studentData]));
+      }
+
+      // Check eligibility
+      if (aggregate >= 60) {
         alert("You are eligible for admission.");
-    } else {
+      } else {
         alert("You are not eligible for admission.");
-    }
+      }
+      
+      // Redirect to the student list page
+      window.location.href = "detail.html";
+    
 }
